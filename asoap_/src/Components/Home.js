@@ -7,6 +7,10 @@ import Efficacious from "./Main/Efficacious";
 import Appointments from "./Main/Appointments";
 import FooterFirst from "./Main/FooterFirst";
 import FooterMain from "./Main/FooterMain";
+import ProductSlider from "./Main/ProductSlider";
+import PromotionalSliderSecond from "./Main/ProductSliderSecond";
+import ProductSliderSecond from "./Main/ProductSliderSecond";
+import LocationSlider from "./Main/LocationSlider";
 
 function Home() {
   return (
@@ -21,7 +25,17 @@ function Home() {
         <Athenaeum />
       </div>
       <div style={{ marginBottom: "130px" }}>
+        <ProductSlider />
+      </div>
+
+      <div style={{ marginBottom: "130px" }}>
         <Efficacious />
+      </div>
+      <div style={{ marginBottom: "130px" }}>
+        <ProductSliderSecond />
+      </div>
+      <div style={{ marginBottom: "130px" }}>
+        <LocationSlider />
       </div>
       <div style={{ marginBottom: "130px" }}>
         <Appointments />
@@ -30,7 +44,7 @@ function Home() {
         <FooterFirst />
       </div>
       <div style={{ marginBottom: "" }}>
-       <FooterMain />
+        <FooterMain />
       </div>
     </div>
   );
