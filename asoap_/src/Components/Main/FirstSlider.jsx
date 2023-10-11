@@ -1,17 +1,30 @@
 import React, { useEffect, useState } from "react";
 
 function FirstSlider() {
+  
+  const [isHidden, setIsHidden] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsHidden(window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   const images = [
     "https://www.aesop.com/u1nb1km7t5q7/u3xwLdwyHOhnFjFDnp9xh/78ae09241ad257722205bb61089ab46a/Aesop_Othertopias_2023_Web_Homepage_3_Primary_Full_Bleed_Desktop_2880x1044px.jpg",
     "https://www.aesop.com/u1nb1km7t5q7/6gh1BfrwUWExsAYoI9MhxK/56b784ae98ed3421486a09e0c112bdea/Aesop_Bar_Soaps_2023_Web_Homepage_1_Primary_Full_Bleed_Desktop_2880x1044px.jpg",
     "https://www.aesop.com/u1nb1km7t5q7/4SUhr7BGma03r1oHxGHgpY/736e8b4997372edbecf26d60044caabf/Aesop_PSAOIS_2023_Web_Homepage_Primary_50-50_Desktop_1440x1500px.jpg",
-    // Add more image paths here
   ];
   const imageCaptions = [
     "Caption for Image 1",
     "Caption for Image 2",
     "This is the third image. It has a different width and text below.",
-    // Add more captions here
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -38,12 +51,20 @@ function FirstSlider() {
           <div className="image-overlay">
             <div
               className="carousel-caption "
-              style={{ zIndex: "10", marginBottom: "-40px",color: currentImageIndex === 2 ? "black" : "white", }}
+              style={{
+                zIndex: "10",
+                marginBottom: "-40px",
+                color: currentImageIndex === 2 ? "black" : "white",
+              }}
             >
               <form className="d-flex ">
                 <div
                   className="d-flex "
-                  style={{ width: "50%", marginLeft: "-150px", color: currentImageIndex === 2 ? "black" : "white", }}
+                  style={{
+                    width: "50%",
+                    marginLeft: "-150px",
+                    color: currentImageIndex === 2 ? "black" : "white",
+                  }}
                 >
                   <svg
                     aria-labelledby="aesop-35"
@@ -56,9 +77,7 @@ function FirstSlider() {
                     viewBox="0 0 489.7 154.3"
                     width="100%"
                     fill="white"
-                    style={{
-                       
-                      }}
+                    style={{}}
 
                     //   style="height: 40px; width: 120px;"
                   >
@@ -149,7 +168,7 @@ function FirstSlider() {
             <button
               onClick={prevImage}
               className="prev-button border-0 fw-bold shadow-0"
-              style={{backgroundColor:"#f6f5e8"}}
+              style={{ backgroundColor: "#f6f5e8" }}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -168,47 +187,111 @@ function FirstSlider() {
             <div className="image-count">{`${currentImageIndex + 1} / ${
               images.length
             }`}</div>
-            <button onClick={nextImage} className=" border-0 "style={{backgroundColor:"#f6f5e8"}}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-chevron-right"
-                viewBox="0 0 16 16"
+            <div>
+              <button
+                onClick={nextImage}
+                className=" border-0 "
+                style={{ backgroundColor: "#f6f5e8" }}
               >
-                <path
-                  fill-rule="evenodd"
-                  d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
-                />
-              </svg>
-            </button>
-            <button onClick={togglePlayPause} className="border-0 " style={{backgroundColor:"#f6f5e8"}}>
-              {isPlaying ? (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
                   height="16"
                   fill="currentColor"
-                  className="bi bi-pause-fill"
+                  class="bi bi-chevron-right"
                   viewBox="0 0 16 16"
                 >
-                  <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z" />
+                  <path
+                    fill-rule="evenodd"
+                    d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+                  />
                 </svg>
-              ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  className="bi bi-play-fill"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
-                </svg>
-              )}
-            </button>
+              </button>
+              <button
+                onClick={togglePlayPause}
+                className="border-0 "
+                style={{ backgroundColor: "#f6f5e8" }}
+              >
+                {isPlaying ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    className="bi bi-pause-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z" />
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    className="bi bi-play-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
+                  </svg>
+                )}
+              </button>
+            </div>
+            <div></div>
           </div>
+          <form className=" bg-black ">
+            <div
+              className="d-flex "
+              style={{
+                width: "100%",
+                height: "400px",
+                color: currentImageIndex === 2 ? "black" : "white",
+              }}
+            >
+              <div className="text-start p-4" style={{ width: "100%" }}>
+                <h6 className="mb-4 mt-3 ">A new Othertopias fragrance</h6>
+                <h3 className="mb-4">Ouranon Eau de Parfum</h3>
+                <p className="" style={{ lineHeight: "30px" }}>
+                  A fragrance that evokes a silent monolith, the last vestige of
+                  a stone circle whose meaning has been lost to time earthy
+                  minerality commingling with Frankincense, Hay and Myrrh.
+                </p>
+                <div
+                  className="p-3 border-1 rounded-0 d-flex justify-content-between"
+                  style={{
+                    border: "1px solid white",
+                    width: "100%",
+                    transition: "color 0.3s, background-color 0.3s",
+                  }}
+                  onMouseOver={(e) => {
+                    e.currentTarget.style.backgroundColor = "white";
+                    e.currentTarget.style.color = "black";
+                  }}
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.backgroundColor = ""; // Revert to original background color
+                    e.currentTarget.style.color = ""; // Revert to original background color
+                  }}
+                >
+                  <div>Discover Ouranon</div>
+                  <div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="22"
+                      height="22"
+                      fill="currentColor"
+                      class="bi bi-arrow-right-short"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>

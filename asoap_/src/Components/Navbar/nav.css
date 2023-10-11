@@ -1,3 +1,36 @@
-.bakcground {
-    background-color: green;
+/* FirstNavbar.css */
+/* Common styles for both screen sizes */
+.inlineStyles {
+  font-family: "Suisse Regular, sans-serif";
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  list-style-type: none;
+  color: #333;
+  box-sizing: border-box;
+  margin: 0;
+  clear: both;
+  height: auto;
+  overflow: visible;
+  padding: 10px 20px;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+/* Styles specific to larger screens */
+.BlackBanner {
+  background-color: #252525;
+  color: white;
+  /* Add any other styles for larger screens here */
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .inlineStyles {
+    /* Adjust styles for smaller screens here */
+    font-size: 14px;
+    padding: 10px;
+    /* Add any other styles for smaller screens here */
   }
+}

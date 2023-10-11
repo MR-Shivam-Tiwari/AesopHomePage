@@ -22,14 +22,14 @@ function Home() {
         <FirstSlider />
       </div>
       <div style={{ marginBottom: "130px" }}>
-        <Athenaeum />
+        {/* <Athenaeum /> */}
       </div>
       <div style={{ marginBottom: "130px" }}>
         <ProductSlider />
       </div>
 
       <div style={{ marginBottom: "130px" }}>
-        <Efficacious />
+        {/* <Efficacious /> */}
       </div>
       <div style={{ marginBottom: "130px" }}>
         <ProductSliderSecond />
@@ -38,7 +38,7 @@ function Home() {
         <LocationSlider />
       </div>
       <div style={{ marginBottom: "130px" }}>
-        <Appointments />
+        {/* <Appointments /> */}
       </div>
       <div style={{ marginBottom: "130px" }}>
         <FooterFirst />
